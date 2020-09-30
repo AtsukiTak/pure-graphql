@@ -1,0 +1,16 @@
+{
+  "name": "pure-graphql-client-codegen",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.3"
+  },
+  "publishConfig": {
+    "directory": "dist",
+    "access": "public"
+  }
+}
