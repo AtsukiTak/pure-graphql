@@ -31,6 +31,7 @@ const query = graphql.parse(`
       title
       status
       lastComment {
+        id
         content
       }
     }

@@ -1,5 +1,6 @@
 import { Types, PluginFunction } from "@graphql-codegen/plugin-helpers";
 import * as graphql from "graphql";
+import { format } from "prettier";
 
 export interface Config {
   scalarDecoders?: { [name: string]: string };
@@ -25,9 +26,13 @@ export const plugin: PluginFunction<Config, Types.ComplexPluginOutput> = (
     .filter(isOperationDefinitionNode)
     .map((def) => parseOperationDefinitionNode(def, queryObj));
 
+  const rawContent = [...scalarDecoderImpls, ...queryDecoderImpls].join("\n");
+
+  const content = format(rawContent, { parser: "babel" });
+
   return {
     prepend: ['import * as D from "@mojotech/json-type-validation"'],
-    content: [...scalarDecoderImpls, ...queryDecoderImpls].join("\n"),
+    content,
   };
 };
 
