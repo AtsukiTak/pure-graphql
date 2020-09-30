@@ -1,0 +1,22 @@
+{
+  "name": "pure-graphql-client-integration-test",
+  "version": "1.0.0",
+  "main": "dist/generated.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "codegen": "graphql-codegen --config codegen.yml",
+    "test": "yarn codegen && tsc && echo \"Success!\""
+  },
+  "dependencies": {
+    "@mojotech/json-type-validation": "^3.1.0",
+    "graphql": "^15.0.0"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^1.17.10",
+    "@graphql-codegen/typescript": "^1.17.10",
+    "@graphql-codegen/typescript-operations": "^1.17.8",
+    "pure-graphql-client-codegen": "../../",
+    "typescript": "^4.0.3"
+  }
+}

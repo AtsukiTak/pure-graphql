@@ -1,0 +1,22 @@
+scalar UUID
+
+enum TopicStatus {
+  Open
+  Closed
+}
+
+type Query {
+  topics: [Topic!]!
+}
+
+type Topic {
+  id: UUID!
+  title: String
+  status: TopicStatus!
+  lastComment: Comment
+}
+
+type Comment {
+  id: UUID!
+  content: String!
+}

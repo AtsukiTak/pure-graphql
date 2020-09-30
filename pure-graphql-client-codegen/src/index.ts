@@ -28,10 +28,10 @@ export const plugin: PluginFunction<Config, Types.ComplexPluginOutput> = (
 
   const rawContent = [...scalarDecoderImpls, ...queryDecoderImpls].join("\n");
 
-  const content = format(rawContent, { parser: "babel" });
+  const content = format(rawContent, { parser: "typescript" });
 
   return {
-    prepend: ['import * as D from "@mojotech/json-type-validation"'],
+    prepend: ['import * as D from "@mojotech/json-type-validation";'],
     content,
   };
 };
@@ -50,9 +50,13 @@ const parseOperationDefinitionNode = (
   node: graphql.OperationDefinitionNode,
   object: graphql.GraphQLObjectType
 ): string => {
-  const name = toPascalCase(node.name!.value);
-  const decoderImpl = parseObjectInner(node.selectionSet, object);
-  return `export const ${name}Decoder: D.Decoder<${name}> = ${decoderImpl}`;
+  if (node.operation === "query") {
+    const name = `${toPascalCase(node.name!.value)}Query`;
+    const decoderImpl = parseObjectInner(node.selectionSet, object);
+    return `export const ${name}Decoder: D.Decoder<${name}> = ${decoderImpl}`;
+  }
+
+  throw new Error(`Unsupported operation type: ${node.operation}`);
 };
 
 const toPascalCase = (s: string): string => {
@@ -136,7 +140,7 @@ const parseObject = (
 // # Return
 // string such as
 // `
-// D.Object({
+// D.object({
 //  id: UUIDDecoder,
 //  title: StringDecoder,
 // })
@@ -158,7 +162,7 @@ const parseObjectInner = (
     })
     .join(", ");
 
-  return `D.Object({ ${internal} })`;
+  return `D.object({ ${internal} })`;
 };
 
 const parseList = (

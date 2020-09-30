@@ -1,0 +1,11 @@
+query topics {
+  topics {
+    id
+    title
+    status
+    lastComment {
+      id
+      content
+    }
+  }
+}
