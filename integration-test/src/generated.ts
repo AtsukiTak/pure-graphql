@@ -1,4 +1,5 @@
 import * as D from "@mojotech/json-type-validation";
+import { request } from "@AtsukiTak/pure-graphql-client"
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** All built-in and custom scalars, mapped to their actual values */
@@ -68,3 +69,34 @@ export const TopicsQueryDecoder: D.Decoder<TopicsQuery> = D.object({
     })
   ),
 });
+
+export class PureGraphQLClient {
+    constructor(
+      readonly url: string,
+      readonly headers?: { [key: string]: string }
+    ) {}
+
+    
+  queryTopics(variables?: TopicsQueryVariables): Promise<TopicsQuery> {
+    const query = `query topics {
+  topics {
+    id
+    title
+    status
+    lastComment {
+      id
+      content
+    }
+  }
+}`;
+
+    return request({
+      url: this.url,
+      headers: this.headers,
+      query,
+      decoder: TopicsQueryDecoder,
+      variables,
+    });
+  }
+  
+  }

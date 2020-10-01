@@ -8,6 +8,7 @@ generates:
       - "typescript"
       - "typescript-operations"
       - "graphql-decoder-codegen"
+      - "pure-graphql-client-codegen"
     config:
       avoidOptionals: true
       scalarDecoders:

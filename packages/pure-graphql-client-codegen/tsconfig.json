@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es3",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "rootDir": "src",
+    "outDir": "./dist",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "baseUrl": "./src"
+  },
+  "include": [
+    "src"
+  ]
+}

@@ -8,7 +8,7 @@ import { RequestError } from "./error";
 // - Get request
 export const request = async <T, V = { [key: string]: unknown }>(args: {
   url: string;
-  document: DocumentNode;
+  query: string;
   decoder: Decoder<T>;
   variables?: V;
   headers?: { [key: string]: string };
