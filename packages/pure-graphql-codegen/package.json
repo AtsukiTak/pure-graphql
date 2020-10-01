@@ -1,6 +1,6 @@
 {
   "name": "pure-graphql-codegen",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/index.js",
   "repository": "git@github.com:AtsukiTak/pure-graphql.git",
   "author": "AtsukiTak <takatomgoo@gmail.com>",
