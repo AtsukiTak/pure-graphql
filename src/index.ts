@@ -6,7 +6,7 @@ import { RequestError } from "./error";
 // Currentry this library does not support
 // - File upload
 // - Get request
-export const request = async <T, V = { [key: string]: any }>(args: {
+export const request = async <T, V = { [key: string]: unknown }>(args: {
   url: string;
   document: DocumentNode;
   decoder: Decoder<T>;
