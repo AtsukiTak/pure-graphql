@@ -9,7 +9,7 @@ export const plugin: PluginFunction<Config, Types.ComplexPluginOutput> = (
   config: Config = {}
 ) => {
   return {
-    prepend: ['import { request } from "@AtsukiTak/pure-graphql";'],
+    prepend: ['import { request } from "pure-graphql";'],
     content: genClientCode(documents),
   };
 };
