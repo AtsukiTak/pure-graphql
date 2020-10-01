@@ -14,6 +14,8 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
     "baseUrl": "./src"
   },
   "include": [

@@ -1,5 +1,5 @@
 import * as D from "@mojotech/json-type-validation";
-import { request } from "@AtsukiTak/pure-graphql-client"
+import { request } from "pure-graphql";
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** All built-in and custom scalars, mapped to their actual values */

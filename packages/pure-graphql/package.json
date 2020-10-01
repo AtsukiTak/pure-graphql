@@ -1,8 +1,8 @@
 {
-  "name": "pure-graphql-client",
+  "name": "pure-graphql",
   "version": "0.0.1",
-  "main": "index.js",
-  "repository": "git@github.com:AtsukiTak/pure-graphql-client.git",
+  "main": "dist/index.js",
+  "repository": "git@github.com:AtsukiTak/pure-graphql.git",
   "author": "AtsukiTak <takatomgoo@gmail.com>",
   "license": "MIT",
   "scripts": {

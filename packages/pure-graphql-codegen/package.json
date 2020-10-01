@@ -1,8 +1,8 @@
 {
-  "name": "pure-graphql-client-codegen",
+  "name": "pure-graphql-codegen",
   "version": "0.0.1",
   "main": "dist/index.js",
-  "repository": "git@github.com:AtsukiTak/pure-graphql-client.git",
+  "repository": "git@github.com:AtsukiTak/pure-graphql.git",
   "author": "AtsukiTak <takatomgoo@gmail.com>",
   "license": "MIT",
   "scripts": {

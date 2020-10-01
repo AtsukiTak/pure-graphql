@@ -13,10 +13,10 @@ export const request = async <T, V = { [key: string]: unknown }>(args: {
   variables?: V;
   headers?: { [key: string]: string };
 }): Promise<T> => {
-  const { url, document, decoder, variables, headers } = args;
+  const { url, query, decoder, variables, headers } = args;
 
   const body = JSON.stringify({
-    query: print(document),
+    query,
     variables,
   });
 
