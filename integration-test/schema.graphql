@@ -1,8 +1,9 @@
 scalar UUID
 
 enum TopicStatus {
-  Open
-  Closed
+  PRE_OPEN
+  OPEN
+  CLOSED
 }
 
 type Query {

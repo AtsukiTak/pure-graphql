@@ -1,6 +1,7 @@
 import { Types, PluginFunction } from "@graphql-codegen/plugin-helpers";
 import * as graphql from "graphql";
 import { format } from "prettier";
+import { pascalCase } from "change-case";
 
 export interface Config {
   scalarDecoders?: { [name: string]: string };
@@ -51,16 +52,12 @@ const parseOperationDefinitionNode = (
   object: graphql.GraphQLObjectType
 ): string => {
   if (node.operation === "query") {
-    const name = `${toPascalCase(node.name!.value)}Query`;
+    const name = `${pascalCase(node.name!.value)}Query`;
     const decoderImpl = parseObjectInner(node.selectionSet, object);
     return `export const ${name}Decoder: D.Decoder<${name}> = ${decoderImpl}`;
   }
 
   throw new Error(`Unsupported operation type: ${node.operation}`);
-};
-
-const toPascalCase = (s: string): string => {
-  return s.charAt(0).toUpperCase() + s.slice(1);
 };
 
 // ## Example
@@ -183,7 +180,7 @@ const parseEnum = (
   const name = enumType.name;
   const enumConsts = enumType
     .getValues()
-    .map((val) => `D.constant(${name}.${val.name})`)
+    .map((val) => `D.constant(${name}.${pascalCase(val.name)})`)
     .join(", ");
   return `D.oneOf( ${enumConsts} )`;
 };

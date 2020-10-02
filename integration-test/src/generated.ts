@@ -14,8 +14,9 @@ export type Scalars = {
 
 
 export enum TopicStatus {
-  Open = 'Open',
-  Closed = 'Closed'
+  PreOpen = 'PRE_OPEN',
+  Open = 'OPEN',
+  Closed = 'CLOSED'
 }
 
 export type Query = {
@@ -59,6 +60,7 @@ export const TopicsQueryDecoder: D.Decoder<TopicsQuery> = D.object({
       id: UUIDDecoder,
       title: D.union(D.constant(null), D.string()),
       status: D.oneOf(
+        D.constant(TopicStatus.PreOpen),
         D.constant(TopicStatus.Open),
         D.constant(TopicStatus.Closed)
       ),
