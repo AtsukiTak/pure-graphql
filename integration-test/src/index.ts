@@ -1,4 +1,5 @@
 import { PureGraphQLClient } from "./generated";
 
 const client = new PureGraphQLClient("some url");
-client.queryTopics().then(res => console.log(res.topics.map(topic => topic.lastComment?.id)))
+client.queryAllArticles()
+  .then(res => console.log(res.articles.map(article => article.lastComment?.id)))

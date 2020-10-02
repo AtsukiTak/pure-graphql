@@ -13,7 +13,7 @@ export type Scalars = {
 };
 
 
-export enum TopicStatus {
+export enum ArticleStatus {
   PreOpen = 'PRE_OPEN',
   Open = 'OPEN',
   Closed = 'CLOSED'
@@ -21,14 +21,14 @@ export enum TopicStatus {
 
 export type Query = {
   __typename?: 'Query';
-  topics: Array<Topic>;
+  articles: Array<Article>;
 };
 
-export type Topic = {
-  __typename?: 'Topic';
+export type Article = {
+  __typename?: 'Article';
   id: Scalars['UUID'];
   title: Maybe<Scalars['String']>;
-  status: TopicStatus;
+  status: ArticleStatus;
   lastComment: Maybe<Comment>;
 };
 
@@ -38,14 +38,14 @@ export type Comment = {
   content: Scalars['String'];
 };
 
-export type TopicsQueryVariables = Exact<{ [key: string]: never; }>;
+export type AllArticlesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TopicsQuery = (
+export type AllArticlesQuery = (
   { __typename?: 'Query' }
-  & { topics: Array<(
-    { __typename?: 'Topic' }
-    & Pick<Topic, 'id' | 'title' | 'status'>
+  & { articles: Array<(
+    { __typename?: 'Article' }
+    & Pick<Article, 'id' | 'title' | 'status'>
     & { lastComment: Maybe<(
       { __typename?: 'Comment' }
       & Pick<Comment, 'id' | 'content'>
@@ -54,15 +54,15 @@ export type TopicsQuery = (
 );
 
 export const UUIDDecoder = D.string();
-export const TopicsQueryDecoder: D.Decoder<TopicsQuery> = D.object({
-  topics: D.array(
+export const AllArticlesQueryDecoder: D.Decoder<AllArticlesQuery> = D.object({
+  articles: D.array(
     D.object({
       id: UUIDDecoder,
       title: D.union(D.constant(null), D.string()),
       status: D.oneOf(
-        D.constant(TopicStatus.PreOpen),
-        D.constant(TopicStatus.Open),
-        D.constant(TopicStatus.Closed)
+        D.constant(ArticleStatus.PreOpen),
+        D.constant(ArticleStatus.Open),
+        D.constant(ArticleStatus.Closed)
       ),
       lastComment: D.union(
         D.constant(null),
@@ -79,9 +79,9 @@ export class PureGraphQLClient {
     ) {}
 
     
-  queryTopics(variables?: TopicsQueryVariables): Promise<TopicsQuery> {
-    const query = `query topics {
-  topics {
+  queryAllArticles(variables?: AllArticlesQueryVariables): Promise<AllArticlesQuery> {
+    const query = `query allArticles {
+  articles {
     id
     title
     status
@@ -96,7 +96,7 @@ export class PureGraphQLClient {
       url: this.url,
       headers: this.headers,
       query,
-      decoder: TopicsQueryDecoder,
+      decoder: AllArticlesQueryDecoder,
       variables,
     });
   }

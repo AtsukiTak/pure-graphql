@@ -1,5 +1,5 @@
-query topics {
-  topics {
+query allArticles {
+  articles {
     id
     title
     status

@@ -1,19 +1,19 @@
 scalar UUID
 
-enum TopicStatus {
+enum ArticleStatus {
   PRE_OPEN
   OPEN
   CLOSED
 }
 
 type Query {
-  topics: [Topic!]!
+  articles: [Article!]!
 }
 
-type Topic {
+type Article {
   id: UUID!
   title: String
-  status: TopicStatus!
+  status: ArticleStatus!
   lastComment: Comment
 }
 

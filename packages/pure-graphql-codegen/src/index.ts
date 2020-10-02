@@ -56,7 +56,7 @@ const genClientMethodCode = (node: graphql.OperationDefinitionNode): string => {
       url: this.url,
       headers: this.headers,
       query,
-      decoder: TopicsQueryDecoder,
+      decoder: ${queryName}QueryDecoder,
       variables,
     });
   }
